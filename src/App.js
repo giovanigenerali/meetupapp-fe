@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import React from 'react';
 import './config/reactotron';
 
@@ -7,6 +8,8 @@ import ReduxToastr from 'react-redux-toastr';
 import store from './store';
 import Routes from './routes';
 import GlobalStyle from './styles/global';
+
+dotenv.config();
 
 const App = () => (
   <Provider store={store}>
