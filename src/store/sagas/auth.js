@@ -24,6 +24,7 @@ export function* signIn({ email, password }) {
       yield put(push('/dashboard'));
     }
   } catch (err) {
+    yield put(AuthActions.signInFailed());
     yield put(
       toastrActions.add({
         type: 'error',
@@ -55,6 +56,7 @@ export function* signUp({ name, email, password }) {
 
     yield put(push('/profile'));
   } catch (err) {
+    yield put(AuthActions.signUpFailed());
     yield all(
       err.response.data.map(error => put(
         toastrActions.add({

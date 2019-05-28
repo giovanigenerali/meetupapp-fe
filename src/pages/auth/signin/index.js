@@ -15,6 +15,7 @@ import { Container } from '../styles';
 class Signin extends Component {
   static propTypes = {
     signInRequest: PropTypes.func.isRequired,
+    submittingSignin: PropTypes.bool.isRequired,
   };
 
   state = {
@@ -36,6 +37,7 @@ class Signin extends Component {
   };
 
   render() {
+    const { submittingSignin } = this.props;
     const { email, password } = this.state;
 
     return (
@@ -67,7 +69,13 @@ class Signin extends Component {
             onChange={this.handleInputChange}
           />
 
-          <Button type="submit">Entrar</Button>
+          {submittingSignin ? (
+            <Button type="submit" disabled={submittingSignin}>
+              Aguarde...
+            </Button>
+          ) : (
+            <Button type="submit">Entrar</Button>
+          )}
         </Form>
 
         <Link to="/signup">Criar conta grátis</Link>
@@ -76,9 +84,13 @@ class Signin extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  submittingSignin: state.auth.submitting,
+});
+
 const mapDispatchToProps = dispatch => bindActionCreators(AuthActions, dispatch);
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(Signin);
