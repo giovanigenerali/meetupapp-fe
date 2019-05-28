@@ -18,9 +18,15 @@ class Dashboard extends Component {
     meetupSubscribedRequest: PropTypes.func.isRequired,
     meetupUpcomingRequest: PropTypes.func.isRequired,
     meetupRecomendedRequest: PropTypes.func.isRequired,
-    meetupsSubscribed: PropTypes.any.isRequired,
-    meetupsUpcoming: PropTypes.any.isRequired,
-    meetupsRecomended: PropTypes.any.isRequired,
+    meetupsSubscribed: PropTypes.shape({
+      data: PropTypes.arrayOf(PropTypes.object),
+    }).isRequired,
+    meetupsUpcoming: PropTypes.shape({
+      data: PropTypes.arrayOf(PropTypes.object),
+    }).isRequired,
+    meetupsRecomended: PropTypes.shape({
+      data: PropTypes.arrayOf(PropTypes.object),
+    }).isRequired,
     loadingMeetupsSubscribed: PropTypes.bool.isRequired,
     loadingMeetupsUpcoming: PropTypes.bool.isRequired,
     loadingMeetupsRecomended: PropTypes.bool.isRequired,

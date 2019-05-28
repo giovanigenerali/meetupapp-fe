@@ -44,10 +44,10 @@ export default Creators;
 /* Initial State */
 
 export const INITIAL_STATE = Immutable({
-  subscribed: [],
-  upcoming: [],
-  recomended: [],
-  search: [],
+  subscribed: {},
+  upcoming: {},
+  recomended: {},
+  search: {},
   title: null,
   id: null,
   meetup: null,

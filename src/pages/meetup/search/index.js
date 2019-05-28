@@ -23,7 +23,9 @@ import MeetupItem from '../../../components/MeetupItem';
 class Search extends Component {
   static propTypes = {
     meetupSearchRequest: PropTypes.func.isRequired,
-    meetups: PropTypes.any.isRequired,
+    meetups: PropTypes.shape({
+      data: PropTypes.arrayOf(PropTypes.object),
+    }).isRequired,
     loadingMeetupSearch: PropTypes.bool.isRequired,
   };
 
@@ -34,7 +36,7 @@ class Search extends Component {
 
   state = {
     search: '',
-    meetups: [],
+    meetups: {},
     total: 0,
   };
 
@@ -57,11 +59,11 @@ class Search extends Component {
     if (search.trim().length > 0) {
       this.setState({ search });
     } else {
-      this.setState({ meetups: [] });
+      this.setState({ meetups: {} });
     }
 
     if (search.trim().length === 0) {
-      this.setState({ search: '', meetups: [] });
+      this.setState({ search: '', meetups: {} });
     }
   };
 
@@ -77,7 +79,7 @@ class Search extends Component {
   handleClearSearch = () => {
     this.setState({
       search: '',
-      meetups: [],
+      meetups: {},
       total: 0,
     });
   };
